@@ -10,9 +10,9 @@ public class Main {
             }
         }
         printField(field);
-        boolean gameActive = true;
+        String gameActive = "Not finished";
         int turn = 0;
-        while (gameActive) {
+        while (gameActive.equals("Not finished")) {
             if (turn % 2 == 0) {
                 newPosition(field, "X");
             } else {
@@ -22,6 +22,7 @@ public class Main {
             gameActive = stillPlaying(field);
             turn++;
         }
+        System.out.println(stillPlaying(field));
     }
 
     public static void printField(String[][] field) {
@@ -71,7 +72,7 @@ public class Main {
         return field;
     }
 
-    public static boolean stillPlaying (String[][] field) {
+    public static String stillPlaying (String[][] field) {
         boolean xWins = false;
         boolean oWins = false;
         int countXRow = 0;
@@ -155,16 +156,13 @@ public class Main {
         }
 
         if (xWins) {
-            System.out.println("X wins");
-            return false;
+            return "X wins";
         } else if (oWins) {
-            System.out.println("O wins");
-            return false;
+            return "O wins";
         } else if (countEmpty == 0) {
-            System.out.println("Draw");
-            return false;
+            return "Draw";
         } else {
-            return true;
+            return "Not finished";
         }
     }
 }
